@@ -1,0 +1,23 @@
+html, body {
+    margin: 0;
+    padding-top: 10px;
+    width: 90%;
+    height: 100%;
+    magin:0 auto;
+}
+
+.top {
+    height: 80px;
+}
+
+td /*设置表格文字左右和上下居中对齐*/ 
+{  
+    vertical-align: middle;
+    text-align: center;  
+}
+
+th /*设置表格文字左右和上下居中对齐*/ 
+{  
+    vertical-align: middle;
+    text-align: center;  
+}

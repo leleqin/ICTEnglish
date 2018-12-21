@@ -1,0 +1,26 @@
+html, body {
+	margin: 0;
+	padding: 10px;
+	width: 90%;
+	height: 100%;
+	magin:0 auto;
+}
+
+.newpaper {
+	height: 150px;	
+	border-bottom:1px solid #C7C7C7;
+}
+
+
+.oldpaper {
+	padding: 10px;
+	height: 600px;	
+    overflow-y:auto;padding:10px;
+    border-bottom:1px solid #C7C7C7;
+}
+
+.bottom {
+	padding: 10;
+	height: 40px;
+	float：right;
+}

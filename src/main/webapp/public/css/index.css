@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+html, body {
+    margin: 0;
+    padding-top: 10px;
+    width: 90%;
+    height: 100%;
+    magin:0 auto;
+}
+
+#a1 {
+	text-decoration: underline;
+	float: right;
+	margin: 50px;
+
+}
+#a2 {
+	height: 200px;
+	width: 300px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	text-align: center;
+	text-height: auto;
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;
+	float: left;
+	box-shadow: 3px 3px 3px;
+}
+#a3 {
+	float: left;
+	height: 200px;
+	width: 300px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	text-align: center;
+	vertical-align: middle;
+	margin-right: 0px;
+	margin-left: 45px;
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;
+	box-shadow: 3px 3px 3px;
+}
+#a2 .a2 {
+	text-align: center;
+	vertical-align: middle;
+	padding: 50px;
+}
+#a3 .a3 {
+	padding: 50px;
+}
+#z1 {
+	height: 100%;
+	width: 650px;
+	float: left;
+	margin-top: 200px;
+	margin-right: 200px;
+	margin-bottom: 200px;
+	margin-left: 300px;
+}

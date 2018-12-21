@@ -1,0 +1,24 @@
+html, body {
+    margin: 0;
+    padding-top: 10px;
+    width: 90%;
+    height: 100%;
+    magin:0 auto;
+}
+
+.top {
+    height: 80px;
+}
+
+.middle{
+    height: 700px;
+    border-top:1px solid #C7C7C7;
+    border-bottom:1px solid #C7C7C7;
+    overflow-y:auto;padding:10px
+}
+
+
+.bottom {
+    padding: 10;
+    height: 40px;
+}
