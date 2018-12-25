@@ -1,20 +1,21 @@
 package com.thoughtWorks.dao;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.thoughtWorks.entity.paper.QuestionPaper;
-import com.thoughtWorks.entity.paper.QuestionPaperItem;
 
+import java.util.List;
 
 /**
  * 
- * @author Liwenlu
+ * 我的试卷数据访问层
  * ICTEnglish Dao about Paper
  * 试卷相关的DAO
  *
  */
 public interface PaperDao {
-
+    /**
+     * 试卷列表查询
+     * @return
+     */
+    List<QuestionPaper> paperList();
 
 }

@@ -1,5 +1,7 @@
 package com.thoughtWorks.entity.paper;
 
+import java.sql.Timestamp;
+
 /**
  * 
  * @author Liwenlu
@@ -21,6 +23,15 @@ public class QuestionPaper {
     int lastYearCounterpartId = 0;
     String questionList="";
     int authorId=0;
+    Timestamp date_time;
+
+    public Timestamp getDate_time() {
+        return date_time;
+    }
+
+    public void setDate_time(Timestamp date_time) {
+        this.date_time = date_time;
+    }
 
     public int getAuthorId() {
         return authorId;

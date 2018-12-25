@@ -4,5 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.PaperDao">
 
-
+    <select id="paperList" resultType="com.thoughtWorks.entity.paper.QuestionPaper">
+        select * from eurasia_ictenglish_paper_lists
+    </select>
 </mapper>

@@ -1,20 +1,18 @@
 package com.thoughtWorks.service;
 
+import com.thoughtWorks.entity.paper.QuestionPaper;
+
 import java.util.List;
 
-import com.thoughtWorks.entity.paper.QuestionPaper;
-import com.thoughtWorks.entity.paper.QuestionPaperItem;
-
-
 /**
- * 
- * @author Liwenlu
- * smxy question system
- * service interface
- *
+ * 我的试卷数据业务逻辑接口层
  */
-
 public interface PaperManageService {
 
+    /**
+     * 试卷查询
+     * @return
+     */
+    List<QuestionPaper> paperList();
 
 }
