@@ -25,4 +25,13 @@ public class PaperManageServiceImpl implements PaperManageService {
     public List<QuestionPaper> paperList() {
         return paperDao.paperList();
     }
+
+    /**
+     * 删除试卷
+     * @param id
+     */
+    @Override
+    public void deletePaper(int id) {
+        paperDao.deletePaper(id);
+    }
 }

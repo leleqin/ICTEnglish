@@ -7,4 +7,8 @@
     <select id="paperList" resultType="com.thoughtWorks.entity.paper.QuestionPaper">
         select * from eurasia_ictenglish_paper_lists
     </select>
+
+    <delete id="deletePaper" parameterType="com.thoughtWorks.entity.paper.QuestionPaper">
+        delete from eurasia_ictenglish_paper_lists where id = #{id}
+    </delete>
 </mapper>

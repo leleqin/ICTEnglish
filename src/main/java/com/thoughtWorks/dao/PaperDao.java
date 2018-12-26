@@ -18,4 +18,10 @@ public interface PaperDao {
      */
     List<QuestionPaper> paperList();
 
+    /**
+     * 删除试卷
+     * @param id
+     */
+    void deletePaper(int id);
+
 }
