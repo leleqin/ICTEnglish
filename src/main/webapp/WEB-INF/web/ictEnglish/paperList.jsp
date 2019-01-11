@@ -54,7 +54,7 @@
                 for (var i = 0; i < data.length; i++) {
                     $("#context").append(`<tr>
                                     <td>` + (i + 1) + `</td>
-                                    <td>` + data[i]['date_time'] + `</td>
+                                    <td>` + data[i]['dateTime'] + `</td>
                                     <td>` + data[i]['name'] + `</td>
                                     <td><button class="layui-btn layui-btn-sm layui-icon" onclick="scanPaper(` + data[i]['id'] + `)">&#xe60a;浏览</button>
                                         <button class="layui-btn layui-btn-sm layui-btn-danger layui-icon" onclick="deletePaper(` + data[i]['id'] + `)">&#xe640;删除</button>

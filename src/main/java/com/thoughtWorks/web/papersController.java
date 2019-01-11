@@ -1,15 +1,16 @@
 package com.thoughtWorks.web;
 
-import com.thoughtWorks.dto.Result;
 import com.thoughtWorks.entity.paper.QuestionPaper;
 import com.thoughtWorks.service.PaperManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**

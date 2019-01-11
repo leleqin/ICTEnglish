@@ -5,7 +5,7 @@
 <mapper namespace="com.thoughtWorks.dao.PaperDao">
 
     <select id="paperList" resultType="com.thoughtWorks.entity.paper.QuestionPaper">
-        select * from eurasia_ictenglish_paper_lists
+        select * from eurasia_ictenglish_paper_lists order by date_time desc
     </select>
 
     <delete id="deletePaper" parameterType="com.thoughtWorks.entity.paper.QuestionPaper">
