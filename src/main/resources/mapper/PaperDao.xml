@@ -11,4 +11,60 @@
     <delete id="deletePaper" parameterType="com.thoughtWorks.entity.paper.QuestionPaper">
         delete from eurasia_ictenglish_paper_lists where id = #{id}
     </delete>
+
+    <select id="selectPaperNameInfo" parameterType="int" resultType="PaperNameInfo">
+        SELECT name,type
+        FROM eurasia_ictenglish_paper_lists WHERE id=#{id}
+    </select>
+
+    <select id="selectPaperQListById" parameterType="int" resultType="com.thoughtWorks.entity.paper.QuestionPaper">
+        SELECT id,name,questions_list as "questionList",type
+		FROM eurasia_ictenglish_paper_lists where eurasia_ictenglish_paper_lists.id = #{id}
+    </select>
+
+    <select id="selectPaperItemById" parameterType="int" resultType="com.thoughtWorks.entity.paper.QuestionPaperItem">
+        SELECT id,question_type as "qType",score,question_list as "qIdList"
+		FROM eurasia_ictenglish_paper_question_lists where eurasia_ictenglish_paper_question_lists.id = #{id};
+    </select>
+
+    <select id="selectSelectionById" parameterType="int" resultType="com.thoughtWorks.entity.question.Selection">
+        SELECT id, question,answer_a as "answerA",answer_b as "answerB",answer_c as "answerC",answer_d as "answerD",answer
+		FROM eurasia_ictenglish_questions_selection where eurasia_ictenglish_questions_selection.id = #{id};
+    </select>
+
+    <select id="selectTorFById" parameterType="int" resultType="com.thoughtWorks.entity.question.TorF">
+        SELECT id, question,answer_a as "answerA",answer_b as "answerB",answer
+		FROM eurasia_ictenglish_questions_torf where eurasia_ictenglish_questions_torf.id = #{id};
+    </select>
+
+    <select id="selectWordEnToCNById" parameterType="int" resultType="com.thoughtWorks.entity.question.WordEnToCN">
+        select id,question,answer
+        from eurasia_ictenglish_questions_wordentocn where eurasia_ictenglish_questions_wordentocn.id = #{id};
+    </select>
+
+    <select id="selectWordCnToENById" parameterType="int" resultType="com.thoughtWorks.entity.question.WordCnToEN">
+        select id,question,answer
+        from eurasia_ictenglish_questions_wordcntoen where eurasia_ictenglish_questions_wordcntoen.id = #{id};
+    </select>
+
+    <select id="selectExplanationById" parameterType="int" resultType="com.thoughtWorks.entity.question.Explanation">
+        select id,question,answer
+        from eurasia_ictenglish_questions_explanation where eurasia_ictenglish_questions_explanation.id = #{id};
+    </select>
+
+    <select id="selectSentenceEnToCNById" parameterType="int" resultType="com.thoughtWorks.entity.question.SentenceEnToCN">
+        select id,question,answer
+        from eurasia_ictenglish_questions_sentenceentocn where eurasia_ictenglish_questions_sentenceentocn.id = #{id};
+    </select>
+
+    <select id="selectSentenceCnToENById" parameterType="int" resultType="com.thoughtWorks.entity.question.SentenceCnToEN">
+        select id,question,answer
+        from eurasia_ictenglish_questions_sentencecntoen where eurasia_ictenglish_questions_sentencecntoen.id = #{id};
+    </select>
+
+    <select id="selectABRatePaper" resultType="Integer">
+        SELECT IFNULL(MAX(id),-1)
+        FROM eurasia_ictenglish_paper_lists WHERE NAME=#{0} AND TYPE = #{1}
+    </select>
+
 </mapper>

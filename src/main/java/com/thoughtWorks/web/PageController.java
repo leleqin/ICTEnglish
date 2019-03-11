@@ -23,6 +23,12 @@ public class PageController {
     public String paperList(){
         return "ictEnglish/paperList";
     }
+
+    /*跳转至预览页面*/
+//    @RequestMapping("paperPreview")
+//    public String paperPreview(){
+//        return "ictEnglish/paperPreview";
+//    }
     
     /*跳转至手动出题*/
     @RequestMapping("manualPaper")

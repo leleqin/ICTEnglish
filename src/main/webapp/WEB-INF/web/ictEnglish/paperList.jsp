@@ -28,11 +28,14 @@
         </thead>
         <%--查询出的数据列表显示--%>
         <tbody id="context">
-
         </tbody>
     </table>
     <%--分页--%>
     <div id="page"></div>
+    <%--返回首页的button--%>
+    <div class="bottom" align="right">
+        <button class="layui-btn" onclick="backToIndex()">返回首页</button>
+    </div>
 </fieldset>
 
 <script type="text/javascript" src="${baseurl}/public/js/layui/layui.js" charset="UTF-8"></script>
@@ -56,10 +59,10 @@
                                     <td>` + (i + 1) + `</td>
                                     <td>` + data[i]['dateTime'] + `</td>
                                     <td>` + data[i]['name'] + `</td>
-                                    <td><button class="layui-btn layui-btn-sm layui-icon" onclick="scanPaper(` + data[i]['id'] + `)">&#xe60a;浏览</button>
+                                        <td><button class="layui-btn layui-btn-sm layui-icon" onclick="toPreviewPaper(` + data[i]['id'] + `)">&#xe60a;浏览</button>
                                         <button class="layui-btn layui-btn-sm layui-btn-danger layui-icon" onclick="deletePaper(` + data[i]['id'] + `)">&#xe640;删除</button>
                                         <button class="layui-btn layui-btn-sm layui-btn-danger layui-icon" onclick="downloadPaper(` + data[i]['id'] + `)">&#xe601;下载试卷</button>
-                                        <button class="layui-btn layui-btn-sm layui-btn-danger layui-icon" onclick="downloadQuestion(` + data[i]['id'] + `)">&#xe601;下载试卷</button>
+                                        <button class="layui-btn layui-btn-sm layui-btn-danger layui-icon" onclick="downloadAnswer(` + data[i]['id'] + `)">&#xe601;下载答案</button>
                                     </td>
                                 </tr>`);
                 }
@@ -69,20 +72,20 @@
     });
 
     //试卷预览
-    function scanPaper(id) {
+    function toPreviewPaper(id) {
         $.ajax({
-            type:'post',
-            url:'/paper/scanPaper',
-            data:JSON.stringify(id),
-            dataType:'json',
-            contentType:'application/json',
-            success: function (data) {
-                if (data.result) {
+            type: 'post',
+            url: '${baseurl}/paper/toPreviewPaper',
+            data: JSON.stringify(id),
+            dataType: 'json',
+            contentType: 'application/json',
+        success: function (data) {
+            console.log(data);
+            if (data.result) {
                     console.log("跳转");
-                    window.location.href = "WEB-INF/web/ictEnglish/paperPreview.jsp";
+                    window.location.href = "${baseurl}/ictEnglish/paperPreview";
                 } else {
                     console.log("fail");
-                    //layer.msg(data.msg);
                 }
             }
         })
@@ -92,9 +95,9 @@
     function deletePaper(id) {
         layer.confirm("是否删除？", {icon: 3, title: '删除'}, function (index) {
             $.ajax({
-                type:'post',
-                url:'/paper/deletePaper',
-                data:{id:id}
+                type: 'post',
+                url: '/paper/deletePaper',
+                data: {id: id}
             })
             layer.msg('删除成功', {icon: 6, time: 500}, function () {
                 location.reload();
@@ -103,7 +106,23 @@
         })
     }
 
+    //下载试卷
+    function downloadPaper(id) {
+        var url = '/paper/toDownLoadPaper'+'?id='+id;
+        window.location.href=url;
+    }
 
+    //下载答案
+    function downloadAnswer(id) {
+        var url = '/paper/toDownloadAnswer'+'?id='+id;
+        window.location.href=url;
+    }
+
+
+    //返回首页
+    function backToIndex() {
+        window.location.href = "${baseurl}/ictEnglish/index";
+    }
 
 </script>
 
