@@ -1,9 +1,5 @@
 package com.thoughtWorks.entity.paper;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.sql.Timestamp;
-
 /**
  * 
  * @author Liwenlu
@@ -25,16 +21,6 @@ public class QuestionPaper {
     int lastYearCounterpartId = 0;
     String questionList="";
     int authorId=0;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-    Timestamp dateTime;
-
-    public Timestamp getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(Timestamp dateTime) {
-        this.dateTime = dateTime;
-    }
 
     public int getAuthorId() {
         return authorId;

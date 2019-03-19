@@ -19,25 +19,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * 我的试卷控制层
+ * @author ChenJiale
  */
 
 @Component
 @RequestMapping("/paper")
+@SessionAttributes({"questionPackage","oldPapers","newPaper","paperNameInfo","abReapeatPackage"})
 public class papersController {
 
 
@@ -45,34 +48,63 @@ public class papersController {
     PaperManageService paperManageService;
 
     Boolean insert = false;
+
     private QuestionPackage abPackage = null;
     private static String DIR="E:\\SMXY\\download\\";
     private static String PWDDB = "root";
 
     /**
      * 试卷列表查询
-     * @param questionPaper
-     * @return
+     * @author ChenJiale
+     * @param model
      */
-    @RequestMapping("/paperList")
+    @RequestMapping("/getPaperList")
     @ResponseBody
-    public List<QuestionPaper> paperList(QuestionPaper questionPaper){
-        List<QuestionPaper> questionPaperList = paperManageService.paperList();
-        return questionPaperList;
+    public void getPaperList( Model model) {
+        QuestionPaper newPaper = new QuestionPaper();
+        newPaper.setId(-1);
+        model.addAttribute("newPaper",newPaper);
+        System.out.println("np:"+newPaper);
+        List<QuestionPaper> oldPaperList = paperManageService.selectPaperList();
+        model.addAttribute("oldPapers", oldPaperList);
+        System.out.println("getPaperList OLDPapers:"+oldPaperList);
     }
 
     /**
      * 删除试卷
+     * @author ChenJiale
      * @param id
      */
-    @RequestMapping("/deletePaper")
+    @RequestMapping("/removePaper")
     @ResponseBody
-    public void deletePaper(int id){
-       paperManageService.deletePaper(id);
+    public void removePaper(@RequestBody String id,Model model) {
+        int deleteId = Integer.parseInt(id);
+        System.out.println("removePaper paper id:"+id);
+        List<Integer> qTLists = getQuestionList(id);
+        for(int i: qTLists) {
+            paperManageService.deleteQuestions(i);
+        }
+        paperManageService.deletePaper(deleteId);
+
+        QuestionPaper newPaper = new QuestionPaper();
+        newPaper.setId(-1);
+        model.addAttribute("newPaper",newPaper);
+        model.addAttribute("oldPapers",paperManageService.selectPaperList());
+    }
+
+    /**
+     * 清除session
+     * @author ChenJiale
+     */
+    @RequestMapping("clearSession")
+    public void clearSession(SessionStatus sessionStatus, HttpSession session){
+        sessionStatus.setComplete();
+        System.out.println("clear session ok.");
     }
 
     /**
      * 浏览试卷
+     * @author ChenJiale
      * @param id
      * @param model
      * @return
@@ -91,6 +123,11 @@ public class papersController {
         return Result.success();
     }
 
+    /**
+     * AB试卷
+     * @author ChenJiale
+     * @param paperNameInfo
+     */
     private void setABPaper(PaperNameInfo paperNameInfo) {
         int id = getRepeatPaper(paperNameInfo);
         if (id!=-1) {
@@ -101,6 +138,12 @@ public class papersController {
         }
     }
 
+    /**
+     * 获取重复率
+     * @author ChenJiale
+     * @param pNameInfo
+     * @return
+     */
     private int getRepeatPaper(PaperNameInfo pNameInfo) {
         int type = -1;
         int id = -1;
@@ -116,6 +159,12 @@ public class papersController {
         return id;
     }
 
+    /**
+     * 添加重复率
+     * @author ChenJiale
+     * @param qp
+     * @param model
+     */
     private void addRepeatABPackage(QuestionPackage qp, Model model) {
 
         QuestionPackage reapeatABPackage = new QuestionPackage();
@@ -127,6 +176,7 @@ public class papersController {
 
     /**
      * 下载试卷
+     * @author ChenJiale
      * @param id
      * @param request
      * @param response
@@ -169,6 +219,7 @@ public class papersController {
 
     /**
      * 下载答案
+     * @author ChenJiale
      * @param id
      * @param request
      * @param response
@@ -209,6 +260,12 @@ public class papersController {
     }
 
 
+    /**
+     * 获取试题列表
+     * @author ChenJiale
+     * @param id
+     * @return
+     */
     private List<Integer> getQuestionList( String id ) {
         QuestionPaper questionPaper = paperManageService.selectPaperQListById(Integer.parseInt(id));
         System.out.println("selectPaper questionPaper = "+questionPaper);
@@ -229,6 +286,7 @@ public class papersController {
 
     /**
      * 生成试卷id
+     * @author ChenJiale
      * @param id
      * @return
      */
@@ -245,6 +303,12 @@ public class papersController {
         return questionPackage;
     }
 
+    /**
+     * 试题包
+     * @author ChenJiale
+     * @param qPaperItem
+     * @param qPackage
+     */
     private void generateQuestionPackage(QuestionPaperItem qPaperItem, QuestionPackage qPackage) {
         QType qType = QTypeUtil.getQType(qPaperItem.getqType());
         JSONObject jsonData = JSON.parseObject(qPaperItem.getqIdList());
@@ -311,6 +375,13 @@ public class papersController {
         System.out.println("generateQuestionPackage: "+qPackage);
     }
 
+    /**
+     * 试卷答案
+     * @author ChenJiale
+     * @param questionPackage
+     * @param isPaper
+     * @return
+     */
     private String writePaperOrAnwserStr(QuestionPackage questionPackage,Boolean isPaper) {
         String writeStr="";
         List<Selection> selection = questionPackage.getSelectionList();
@@ -380,6 +451,13 @@ public class papersController {
         return writeStr;
     }
 
+    /**
+     * 试题答案
+     * @author ChenJiale
+     * @param type
+     * @param questionList
+     * @return
+     */
     private String writeAnswerStr(QType type, List<?extends Question> questionList) {
         String writeStr="";
         String title = QTypeUtil.getTypeName(type);
@@ -394,6 +472,13 @@ public class papersController {
         return writeStr;
     }
 
+    /**
+     * 试题
+     * @author ChenJiale
+     * @param type
+     * @param questionList
+     * @return
+     */
     private String writeQuestionStr(QType type, List<?extends Question> questionList) {
         String writeStr = "";
         String title = QTypeUtil.getTypeName(type);
@@ -417,6 +502,13 @@ public class papersController {
         return writeStr;
     }
 
+    /**
+     * 添加Index
+     * @author ChenJiale
+     * @param question
+     * @param index
+     * @return
+     */
     private String addIndex(String question, String index) {
         String result=null;
         String left ="<p>";
@@ -431,6 +523,12 @@ public class papersController {
         return result;
     }
 
+    /**
+     * 获取试卷名字
+     * @author ChenJiale
+     * @param id
+     * @return
+     */
     private String getPaperName(String id) {
         QuestionPaper questionPaper = paperManageService.selectPaperQListById(Integer.parseInt(id));
         String paperName = questionPaper.getName();

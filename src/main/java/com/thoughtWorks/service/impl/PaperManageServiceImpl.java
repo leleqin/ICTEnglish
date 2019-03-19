@@ -14,28 +14,35 @@ import java.util.List;
 
 /**
  * 我的试卷业务逻辑实现层
+ * @author ChenJiale
  */
 @Service
 public class PaperManageServiceImpl implements PaperManageService {
     @Autowired
     PaperDao paperDao;
 
-    /**
-     * 试卷列表查询
-     * @return
-     */
-    @Override
-    public List<QuestionPaper> paperList() {
-        return paperDao.paperList();
-    }
 
     /**
      * 删除试卷
+     * @author ChenJiale
      * @param id
      */
     @Override
     public void deletePaper(int id) {
         paperDao.deletePaper(id);
+    }
+    @Override
+    public void deleteQuestions(int id) {
+        paperDao.deleteQuestions(id);
+    }
+    /**
+     * 试卷列表查询
+     * @author ChenJiale
+     * @return
+     */
+    @Override
+    public List<QuestionPaper> selectPaperList() {
+        return paperDao.selectPaperList();
     }
 
     @Override

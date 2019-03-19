@@ -4,6 +4,7 @@ import com.thoughtWorks.entity.paper.PaperNameInfo;
 import com.thoughtWorks.entity.paper.QuestionPaper;
 import com.thoughtWorks.entity.paper.QuestionPaperItem;
 import com.thoughtWorks.entity.question.*;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,22 +13,31 @@ import java.util.List;
  * 我的试卷数据访问层
  * ICTEnglish Dao about Paper
  * 试卷相关的DAO
- *
+ * @author ChenJiale
  */
 public interface PaperDao {
     /**
-     * 试卷列表查询
+     * 试卷查询
+     * @author ChenJiale
      * @return
      */
-    List<QuestionPaper> paperList();
+    List<QuestionPaper> selectPaperList();
 
     /**
      * 删除试卷
+     * @author ChenJiale
      * @param id
      */
     void deletePaper(int id);
 
+    void deleteQuestions(int id);
 
+    /**
+     * 通过ID查询选择题
+     * @author ChenJiale
+     * @param id
+     * @return
+     */
     Selection selectSelectionById(int id);
 
     TorF selectTorFById(int id);

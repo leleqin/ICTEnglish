@@ -11,7 +11,10 @@
 <%@ page import="com.thoughtWorks.entity.question.SentenceEnToCN" %>
 <%@ page import="com.thoughtWorks.entity.question.SentenceCnToEN" %>
 <%@ page import="com.thoughtWorks.entity.paper.PaperNameInfo" %>
-
+<!--
+试卷预览页面
+@author ChenJiale
+-->
 <html lang="en">
 <head>
     <title>试卷预览</title>

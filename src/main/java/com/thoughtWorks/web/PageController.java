@@ -25,10 +25,10 @@ public class PageController {
     }
 
     /*跳转至预览页面*/
-//    @RequestMapping("paperPreview")
-//    public String paperPreview(){
-//        return "ictEnglish/paperPreview";
-//    }
+    @RequestMapping("paperPreview")
+    public String paperPreview(){
+        return "ictEnglish/paperPreview";
+    }
     
     /*跳转至手动出题*/
     @RequestMapping("manualPaper")

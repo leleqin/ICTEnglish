@@ -37,7 +37,7 @@
     function goPaperList() {
         $.ajax({
             type: 'POST',
-            url: "${baseurl}/ictEnglish/paperList",
+            url: "${baseurl}/paper/getPaperList",
             success: function ( ) {
                 window.location.href = "${baseurl}/ictEnglish/paperList";
             }
@@ -47,13 +47,6 @@
     
     function goDataBasePage() {
     	window.location.href = "${baseurl}/ictEnglish/dbPage";
-/*         $.ajax({
-            type: 'POST',
-            url: "${baseurl}/smxy/paper/getDataBase",
-            success: function ( ) {
-                window.location.href = "${baseurl}/smxy/dataBaseManage";
-            }
-        }); */
     }
     </script>
 </body>
