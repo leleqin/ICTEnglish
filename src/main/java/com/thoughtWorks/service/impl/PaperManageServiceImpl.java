@@ -20,8 +20,6 @@ import java.util.List;
 public class PaperManageServiceImpl implements PaperManageService {
     @Autowired
     PaperDao paperDao;
-
-
     /**
      * 删除试卷
      * @author ChenJiale

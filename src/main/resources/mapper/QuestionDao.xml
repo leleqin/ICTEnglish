@@ -4,5 +4,102 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thoughtWorks.dao.QuestionDao">
 
+    <select id="selectSelection" resultType="Selection">
+        SELECT id,question,answer_a as "answerA",answer_b as "answerB",answer_c as "answerC",answer_d as "answerD", answer,difficulty,knowledge_point as "knowledgePoint"
+       FROM eurasia_ictenglish_questions_selection
+    </select>
+
+    <select id="selectTorF" resultType="TorF">
+        select id,question,answer,difficulty,knowledge_point as "knowledgePoint"
+        FROM eurasia_ictenglish_questions_torf
+    </select>
+
+    <select id="selectWordEnToCN" resultType="WordEnToCN">
+        SELECT id,question,answer,difficulty,knowledge_point as "knowledgePoint"
+        FROM eurasia_ictenglish_questions_wordentocn
+    </select>
+
+    <select id="selectWordCnToEN" resultType="WordCnToEN">
+        SELECT id,question,answer,difficulty,knowledge_point as "knowledgePoint"
+        FROM eurasia_ictenglish_questions_wordcntoen
+    </select>
+
+    <select id="selectExplanation" resultType="Explanation">
+        SELECT id,question,answer,difficulty,knowledge_point as "knowledgePoint"
+        FROM eurasia_ictenglish_questions_explanation
+    </select>
+
+    <select id="selectSentenceEnToCN" resultType="SentenceEnToCN">
+        SELECT id,question,answer,difficulty,knowledge_point as "knowledgePoint"
+        FROM eurasia_ictenglish_questions_sentenceentocn
+    </select>
+
+    <select id="selectSentenceCnToEN" resultType="SentenceCnToEN">
+        SELECT id,question,answer,difficulty,knowledge_point as "knowledgePoint"
+        FROM eurasia_ictenglish_questions_sentencecntoen
+    </select>
+
+    <delete id="deleteSelection" parameterType="int">
+        delete from eurasia_ictenglish_questions_selection where id=#{id}
+    </delete>
+
+    <delete id="deleteTorF" parameterType="int">
+        delete from eurasia_ictenglish_questions_torf where id=#{id}
+    </delete>
+
+    <delete id="deleteWordEnToCN" parameterType="int">
+        delete from eurasia_ictenglish_questions_wordentocn where id=#{id}
+    </delete>
+
+    <delete id="deleteWordCnToEN" parameterType="int">
+        delete from eurasia_ictenglish_questions_wordcntoen where id=#{id}
+    </delete>
+
+    <delete id="deleteExplanation" parameterType="int">
+        delete from eurasia_ictenglish_questions_explanation where id=#{id}
+    </delete>
+
+    <delete id="deleteSentenceEnToCN" parameterType="int">
+        delete from eurasia_ictenglish_questions_sentenceentocn where id=#{id}
+    </delete>
+
+    <delete id="deleteSentenceCnToEN" parameterType="int">
+        delete from eurasia_ictenglish_questions_sentencecntoen where id=#{id}
+    </delete>
+
+    <insert id="addSelectionToDB" useGeneratedKeys="true" keyProperty="selection.id" parameterType="com.thoughtWorks.entity.question.Selection">
+        insert into eurasia_ictenglish_questions_selection (question, answer_a, answer_b,answer_c,answer_d,answer,difficulty,knowledge_point)
+        values (#{selection.question},#{selection.answerA},#{selection.answerB},#{selection.answerC},#{selection.answerD},#{selection.answer},#{selection.difficulty}, #{selection.difficulty});
+    </insert>
+
+    <insert id="addTorFToDB" useGeneratedKeys="true" keyProperty="torF.id" parameterType="com.thoughtWorks.entity.question.TorF">
+        insert into eurasia_ictenglish_questions_torf (question, answer,difficulty,knowledge_point)
+        values (#{torF.question},#{torF.answer},#{torF.difficulty},#{torF.difficulty});
+    </insert>
+
+    <insert id="addWordEnToCNToDB" useGeneratedKeys="true" keyProperty="wordEnToCN.id" parameterType="com.thoughtWorks.entity.question.WordEnToCN">
+        insert into eurasia_ictenglish_questions_wordentocn (question,answer,difficulty,knowledge_point)
+        values (#{wordEnToCN.question},#{wordEnToCN.answer},#{wordEnToCN.difficulty},#{wordEnToCN.difficulty});
+    </insert>
+
+    <insert id="addWordCnToENToDB" useGeneratedKeys="true" keyProperty="wordCnToEN.id" parameterType="com.thoughtWorks.entity.question.WordCnToEN">
+        insert into eurasia_ictenglish_questions_wordcntoen (question,answer,difficulty,knowledge_point)
+        values (#{wordCnToEN.question},#{wordCnToEN.answer},#{wordCnToEN.difficulty},#{wordCnToEN.difficulty});
+    </insert>
+
+    <insert id="addExplanationToDB" useGeneratedKeys="true" keyProperty="explanation.id" parameterType="com.thoughtWorks.entity.question.Explanation">
+        insert into eurasia_ictenglish_questions_explanation (question,answer,difficulty,knowledge_point)
+        values (#{explanation.question},#{explanation.answer},#{explanation.difficulty},#{explanation.difficulty});
+    </insert>
+
+    <insert id="addSentenceEnToCNToDB" useGeneratedKeys="true" keyProperty="sentenceEnToCN.id" parameterType="com.thoughtWorks.entity.question.SentenceEnToCN">
+        insert into eurasia_ictenglish_questions_sentenceentocn (question,answer,difficulty,knowledge_point)
+        values (#{sentenceEnToCN.question},#{sentenceEnToCN.answer},#{sentenceEnToCN.difficulty},#{sentenceEnToCN.difficulty});
+    </insert>
+
+    <insert id="addSentenceCnToENToDB" useGeneratedKeys="true" keyProperty="sentenceCnToEN.id" parameterType="com.thoughtWorks.entity.question.SentenceCnToEN">
+        insert into eurasia_ictenglish_questions_sentencecntoen (question,answer,difficulty,knowledge_point)
+        values (#{sentenceCnToEN.question},#{sentenceCnToEN.answer},#{sentenceCnToEN.difficulty},#{sentenceCnToEN.difficulty});
+    </insert>
 
 </mapper>

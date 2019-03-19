@@ -2,6 +2,9 @@ package com.thoughtWorks.util;
 
 import com.thoughtWorks.entity.question.QType;
 
+/**
+ * @author ChenJiale
+ */
 public class QTypeUtil {
     public static String getTypeId(QType type) {
         String typeId="";

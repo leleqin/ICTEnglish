@@ -37,7 +37,7 @@
     function goPaperList() {
         $.ajax({
             type: 'POST',
-            url: "${baseurl}/paper/getPaperList",
+            url: "${baseurl}/ictEnglish/paper/getPaperList",
             success: function ( ) {
                 window.location.href = "${baseurl}/ictEnglish/paperList";
             }

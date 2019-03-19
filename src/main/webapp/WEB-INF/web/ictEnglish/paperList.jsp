@@ -120,7 +120,7 @@
     function preview(id) {
         $.ajax({
             type: 'POST',
-            url: "${baseurl}/paper/toPreviewPaper",
+            url: "${baseurl}/ictEnglish/paper/toPreviewPaper",
             data: JSON.stringify(id),
             dataType : 'json',
             contentType : 'application/json',
@@ -139,14 +139,14 @@
 
     function downloadPaper(id) {
         console.log("download"+id);
-        var url = '${baseurl}/paper/toDownLoadPaper'+'?id='+id;
+        var url = '${baseurl}/ictEnglish/paper/toDownLoadPaper'+'?id='+id;
         console.log(url);
         window.location.href=url;
     }
 
     function downloadAnswer(id) {
         console.log("download"+id);
-        var url = '${baseurl}/paper/toDownloadAnswer'+'?id='+id;
+        var url = '${baseurl}/ictEnglish/paper/toDownloadAnswer'+'?id='+id;
         console.log(url);
         window.location.href=url;
     }
@@ -161,7 +161,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "${baseurl}/paper/removePaper",
+            url: "${baseurl}/ictEnglish/paper/removePaper",
             data: data,
             dataType : 'json',
             contentType : 'application/json'
@@ -171,7 +171,7 @@
     function backToIndex(){
         $.ajax({
             type: 'POST',
-            url: "${baseurl}/paper/clearSession",
+            url: "${baseurl}/ictEnglish/paper/clearSession",
         });
         window.location.href='${baseurl}/ictEnglish/index';
     }
