@@ -123,7 +123,7 @@
                     </p>
                 </td>
                 <td>
-                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=SELECTION'+'&fromPreview=true';">添加</button>
+                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=Selection'+'&fromPreview=true';">添加</button>
                 </td>
             </tr>
             </thead>
@@ -174,7 +174,7 @@
                     </p>
                 </td>
                 <td>
-                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=TORF'+'&fromPreview=true';">添加</button>
+                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=TorF'+'&fromPreview=true';">添加</button>
                 </td>
             </tr>
             </thead>
@@ -222,7 +222,7 @@
                     </p>
                 </td>
                 <td>
-                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=WORDENTOCN'+'&fromPreview=true';">添加</button>
+                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=WordEnToCN'+'&fromPreview=true';">添加</button>
                 </td>
             </tr>
             </thead>
@@ -270,7 +270,7 @@
                     </p>
                 </td>
                 <td>
-                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=WORDCNTOEN'+'&fromPreview=true';">添加</button>
+                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=WordCnToEN'+'&fromPreview=true';">添加</button>
                 </td>
             </tr>
             </thead>
@@ -318,7 +318,7 @@
                     </p>
                 </td>
                 <td>
-                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=EXPLANATION'+'&fromPreview=true';">添加</button>
+                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=Explanation'+'&fromPreview=true';">添加</button>
                 </td>
             </tr>
             </thead>
@@ -366,7 +366,7 @@
                     </p>
                 </td>
                 <td>
-                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=SENTENCEENTOCN'+'&fromPreview=true';">添加</button>
+                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=SentenceEnToCN'+'&fromPreview=true';">添加</button>
                 </td>
             </tr>
             </thead>
@@ -414,7 +414,7 @@
                     </p>
                 </td>
                 <td>
-                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=SENTENCECNTOEN'+'&fromPreview=true';">添加</button>
+                    <button class="layui-btn" onclick="window.location.href='${baseurl}/ictEnglish/manualPaper'+'?type=SentenceCnToEN'+'&fromPreview=true';">添加</button>
                 </td>
             </tr>
             </thead>
@@ -581,25 +581,25 @@
         var type="";
         switch (index) {
             case 0:
-                type="SELECTION";
+                type="Selection";
                 break;
             case 1:
-                type="TORF";
+                type="TorF";
                 break;
             case 2:
-                type="WORDENTOCN";
+                type="WordEnToCN";
                 break;
             case 3:
-                type="WORDCNTOEN";
+                type="WordCnToEN";
                 break;
             case 4:
-                type="EXPLANATION";
+                type="Explanation";
                 break;
             case 5:
-                type="SENTENCEENTOCN";
+                type="SentenceEnToCN";
                 break;
             case 6:
-                type="SENTENCECNTOEN";
+                type="SentenceCnToEN";
                 break;
             default :
                 type = "";
@@ -607,10 +607,6 @@
                 break;
         }
         return type;
-    }
-
-    function goBack() {
-
     }
 
     function store() {
