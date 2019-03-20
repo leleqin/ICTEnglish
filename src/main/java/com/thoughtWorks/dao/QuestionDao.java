@@ -102,4 +102,30 @@ public interface QuestionDao {
 
     //把句子汉译英加入到数据库
     void addSentenceCnToENToDB(@Param("sentenceCnToEN") SentenceCnToEN sentenceCnToEN);
+
+    void addQuestionToPaper(@Param("questionpaperitem") QuestionPaperItem questionpaperitem );
+
+    void addPaper(@Param("questionpaper") QuestionPaper questionpaper);
+
+    List<QuestionPaper> selectPaperList();
+
+    QuestionPaper selectPaperQListById(int id);
+
+    QuestionPaperItem selectPaperItemById(int id);
+
+    List<Selection> selectSelectionByChapter(String condition);
+
+    List<TorF> selectTorFByChapter(String condition);
+
+    List<WordEnToCN> selectWordEnToCNByChapter(String condition);
+
+    List<WordCnToEN> selectWordCnToENByChapter(String condition);
+
+    List<Explanation> selectExplanationByChapter(String condition);
+
+    List<SentenceEnToCN> selectSentenceEnToCNByChapter(String condition);
+
+    List<SentenceCnToEN> selectSentenceCnToENByChapter(String condition);
+
+    int selectABRatePaper(String name, int type);
 }

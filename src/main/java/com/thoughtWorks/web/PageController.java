@@ -54,9 +54,9 @@ public class PageController {
     }
 
     /*跳转到试题预览*/
-    @RequestMapping("questionpreview")
-    public String questionpreview(){
-        return "ictEnglish/questionpreview";
+    @RequestMapping("questionPreview")
+    public String questionPreview(){
+        return "ictEnglish/questionPreview";
     }
 
     /*跳转到选择试题页面*/

@@ -203,7 +203,7 @@ public class QuestionPackage {
         return abReapeatRate;
     }
 
-/*    public void addList(QuestionPackage qp) {
+    public void addList(QuestionPackage qp) {
         if (qp.selectionList != null) {
             if (selectionList == null) {
                 selectionList = qp.selectionList;
@@ -227,9 +227,67 @@ public class QuestionPackage {
                 }
             }
         }
+        if(qp.wordEnToCNList != null ) {
+            if(wordEnToCNList == null) {
+                wordEnToCNList = qp.wordEnToCNList;
+            } else {
+                for(WordEnToCN question:qp.wordEnToCNList) {
+                    if(!wordEnToCNList.contains(question)) {
+                        wordEnToCNList.add(question);
+                    }
+                }
+            }
+        }
+
+        if(qp.wordCnToENList != null ) {
+            if(wordCnToENList == null) {
+                wordCnToENList = qp.wordCnToENList;
+            } else {
+                for(WordCnToEN question:qp.wordCnToENList) {
+                    if(!wordCnToENList.contains(question)) {
+                        wordCnToENList.add(question);
+                    }
+                }
+            }
+        }
+
+        if(qp.explanationList != null ) {
+            if(explanationList == null) {
+                explanationList = qp.explanationList;
+            } else {
+                for(Explanation question:qp.explanationList) {
+                    if(!explanationList.contains(question)) {
+                        explanationList.add(question);
+                    }
+                }
+            }
+        }
+
+        if(qp.sentenceEnToCNList != null ) {
+            if(sentenceEnToCNList == null) {
+                sentenceEnToCNList = qp.sentenceEnToCNList;
+            } else {
+                for(SentenceEnToCN question:qp.sentenceEnToCNList) {
+                    if(!sentenceEnToCNList.contains(question)) {
+                        sentenceEnToCNList.add(question);
+                    }
+                }
+            }
+        }
+        if(qp.sentenceCnToENList != null ) {
+            if(sentenceCnToENList == null) {
+                sentenceCnToENList = qp.sentenceCnToENList;
+            } else {
+                for(SentenceCnToEN question:qp.sentenceCnToENList) {
+                    if(!sentenceCnToENList.contains(question)) {
+                        sentenceCnToENList.add(question);
+                    }
+                }
+            }
+        }
 
 
-    }*/
+    }
 
     @Override
     public String toString() {

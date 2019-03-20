@@ -140,4 +140,66 @@ public class QuestionManageServiceImpl implements QuestionManageService {
     public void addSentenceCnToENToDB(SentenceCnToEN sentenceCnToEN) {
         questionDao.addSentenceCnToENToDB(sentenceCnToEN);
     }
+
+
+    /**
+     * ChangDuo
+     * @param questionItem
+     */
+    @Override
+    public void addQuestionToPaper(QuestionPaperItem questionItem) {
+        // TODO Auto-generated method stub
+        questionDao.addQuestionToPaper(questionItem);
+    }
+
+    @Override
+    public void addPaper(QuestionPaper questionPaper) {
+        // TODO Auto-generated method stub
+        questionDao.addPaper(questionPaper);
+    }
+
+    @Override
+    public List<Selection> selectSelectionByChapter(String condition) {
+        // TODO Auto-generated method stub
+        return questionDao.selectSelectionByChapter(condition);
+    }
+
+    @Override
+    public List<TorF> selectTorFByChapter(String condition) {
+        // TODO Auto-generated method stub
+        return questionDao.selectTorFByChapter(condition);
+    }
+
+    @Override
+    public List<WordEnToCN> selectWordEnToCNByChapter(String condition) {
+        // TODO Auto-generated method stub
+        return questionDao.selectWordEnToCNByChapter(condition);
+    }
+
+    @Override
+    public List<WordCnToEN> selectWordCnToENByChapter(String condition) {
+        // TODO Auto-generated method stub
+        return questionDao.selectWordCnToENByChapter(condition);
+    }
+
+    @Override
+    public List<Explanation> selectExplanationByChapter(String condition) {
+        // TODO Auto-generated method stub
+        return questionDao.selectExplanationByChapter(condition);
+    }
+
+    @Override
+    public List<SentenceEnToCN> selectSentenceEnToCNByChapter(String condition) {
+        // TODO Auto-generated method stub
+        return questionDao.selectSentenceEnToCNByChapter(condition);
+    }
+
+    @Override
+    public List<SentenceCnToEN> selectSentenceCnToENByChapter(String condition) {
+        // TODO Auto-generated method stub
+        return questionDao.selectSentenceCnToENByChapter(condition);
+    }
+
+
+
 }

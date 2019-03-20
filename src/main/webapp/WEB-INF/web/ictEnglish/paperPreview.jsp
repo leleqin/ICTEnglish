@@ -95,10 +95,10 @@
             <tr>
                 <td>
                     <%=question.getQuestion()%><br/>
-                    <p style="float:left">A.<%=question.getAnswerA()%></p><br/>
-                    <p style="float:left">B.<%=question.getAnswerB()%></p><br/>
-                    <p style="float:left">C.<%=question.getAnswerC()%></p><br/>
-                    <p style="float:left">D.<%=question.getAnswerD()%></p><br/>
+                    <p style="float:left"><%=question.getAnswerA()%></p><br/>
+                    <p style="float:left"><%=question.getAnswerB()%></p><br/>
+                    <p style="float:left"><%=question.getAnswerC()%></p><br/>
+                    <p style="float:left"><%=question.getAnswerD()%></p><br/>
                     <%if(abRselection != null && abRselection.contains(question)) { %>
                     <p><font color="red"> <%= repeatStr %></font></p>
                     <%} %>

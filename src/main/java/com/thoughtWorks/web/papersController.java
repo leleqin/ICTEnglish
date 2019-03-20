@@ -359,6 +359,382 @@ public class papersController {
         return entity;
     }
 
+    /**
+     *  @author  changduo
+     *  getByTypeAndChapter方法是来查询搜索数据的
+     */
+    @RequestMapping("/getByTypeAndChapter")
+    @ResponseBody
+    public QuestionPackage getByTypeAndChapter(@RequestBody String data) {
+        JSONObject jData = JSON.parseObject(data);
+        System.out.println(jData);
+        String types = jData.getString("type");
+        List<String> type_list = JSON.parseArray(types, String.class);
+        Boolean isAll = jData.getBoolean("isAll");
+        System.out.println("getByTypeAndChapter");
+        System.out.println("type_list:" + type_list);
+        System.out.println("isAll:" + isAll);
+
+        List<Selection> selection = null;
+        List<TorF> torf = null;
+        List<WordEnToCN> wordentocn = null;
+        List<WordCnToEN> wordcntoen = null;
+        List<Explanation> explanation = null;
+        List<SentenceEnToCN> sentenceentocn = null;
+        List<SentenceCnToEN> sentencecntoen = null;
+        for(int i = 0; i < type_list.size();i++) {
+            switch(type_list.get(i)) {
+                case "Selection":
+                    if(selection == null) {
+                        selection = new ArrayList<Selection>();
+                    }
+                    if(isAll) {
+                        selection = questionManageService.selectSelection();
+                    } else {
+                        for(int j = 0; j < type_list.size(); j++) {
+                            String condition = "%"+type_list.get(j)+"%";
+                            List<Selection> newList = questionManageService.selectSelectionByChapter(condition);
+                            for(Selection question:newList) {
+                                if(!selection.contains(question)) {
+                                    selection.add(question);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "TorF": //命名题
+                    if(torf == null) {
+                        torf = new ArrayList<TorF>();
+                    }
+
+                    if(isAll) {
+                        torf = questionManageService.selectTorF();
+                    } else {
+                        for(int j = 0; j < type_list.size(); j++) {
+                            String condition = "%"+type_list.get(j)+"%";
+                            List<TorF> newList = questionManageService.selectTorFByChapter(condition);
+                            for(TorF question:newList) {
+                                if(!torf.contains(question)) {
+                                    torf.add(question);
+                                }
+                            }
+                        }
+                    }
+
+                    break;
+                case "WordEnToCN": //完成反应式题
+                    if(wordentocn == null) {
+                        wordentocn = new ArrayList<WordEnToCN>();
+                    }
+                    if(isAll) {
+                        wordentocn = questionManageService.selectWordEnToCN();
+                    } else {
+                        for(int j = 0; j < type_list.size(); j++) {
+                            String condition = "%"+type_list.get(j)+"%";
+                            List<WordEnToCN> newList = questionManageService.selectWordEnToCNByChapter(condition);
+                            for(WordEnToCN question:newList) {
+                                if(!wordentocn.contains(question)) {
+                                    wordentocn.add(question);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "WordCnToEN": //推断结构题
+                    if(wordcntoen == null) {
+                        wordcntoen = new ArrayList<WordCnToEN>();
+                    }
+                    if(isAll) {
+                        wordcntoen = questionManageService.selectWordCnToEN();
+                    } else {
+                        for(int j = 0; j < type_list.size(); j++) {
+                            String condition = "%"+type_list.get(j)+"%";
+                            List<WordCnToEN> newList = questionManageService.selectWordCnToENByChapter(condition);
+                            for(WordCnToEN question:newList) {
+                                if(!wordcntoen.contains(question)) {
+                                    wordcntoen.add(question);
+                                }
+                            }
+                        }
+                    }
+
+                    break;
+                case "Explanation": //比较分析题
+                    if(explanation == null) {
+                        explanation = new ArrayList<Explanation>();
+                    }
+                    if(isAll) {
+                        explanation = questionManageService.selectExplanation();
+                    } else {
+                        for(int j = 0; j < type_list.size(); j++) {
+                            String condition = "%"+type_list.get(j)+"%";
+                            List<Explanation> newList = questionManageService.selectExplanationByChapter(condition);
+                            for(Explanation question:newList) {
+                                if(!explanation.contains(question)) {
+                                    explanation.add(question);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "SentenceEnToCN": //鉴别题
+                    if(sentenceentocn == null) {
+                        sentenceentocn = new ArrayList<SentenceEnToCN>();
+                    }
+                    if(isAll) {
+                        sentenceentocn = questionManageService.selectSentenceEnToCN();
+                    } else {
+                        for(int j = 0; j < type_list.size(); j++) {
+                            String condition = "%"+type_list.get(j)+"%";
+                            List<SentenceEnToCN> newList = questionManageService.selectSentenceEnToCNByChapter(condition);
+                            for(SentenceEnToCN question:newList) {
+                                if(!sentenceentocn.contains(question)) {
+                                    sentenceentocn.add(question);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "SentenceCnToEN": //合成题
+                    if(sentencecntoen == null) {
+                        sentencecntoen = new ArrayList<SentenceCnToEN>();
+                    }
+                    if(isAll) {
+                        sentencecntoen = questionManageService.selectSentenceCnToEN();
+                    } else {
+                        for(int j = 0; j < type_list.size(); j++) {
+                            String condition = "%"+type_list.get(j)+"%";
+                            List<SentenceCnToEN> newList = questionManageService.selectSentenceCnToENByChapter(condition);
+                            for(SentenceCnToEN question:newList) {
+                                if(!sentencecntoen.contains(question)) {
+                                    sentencecntoen.add(question);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        QuestionPackage questionPackage = new QuestionPackage();
+        questionPackage.setSelectionList(selection);
+        questionPackage.setTorFList(torf);
+        questionPackage.setWordEnToCNList(wordentocn);
+        questionPackage.setWordCnToENList(wordcntoen);
+        questionPackage.setExplanationList(explanation);
+        questionPackage.setSentenceEnToCNList(sentenceentocn);
+        questionPackage.setSentenceCnToENList(sentencecntoen);
+        return questionPackage;
+    }
+
+
+    /**
+     *@author  changduo
+     * setDataBeforeSelect是用来检查是否添加了试卷名称
+     */
+
+    @RequestMapping("/setDataBeforeSelect")
+    @ResponseBody
+    public void setDataBeforeSelect(@RequestBody String data,Model model) {
+        JSONObject jData = JSON.parseObject(data);
+        insert = jData.getBoolean("fromPreview");
+        String paperName = jData.getString("paperName");
+        int paperType = Integer.parseInt(jData.getString("paperType"));
+        System.out.println("setDataBeforeSelect");
+        System.out.println("insert:"+insert);
+        System.out.println("paperName:"+paperName);
+        System.out.println("paperType:"+paperType);
+        PaperNameInfo paperNameInfo = new PaperNameInfo(paperName, paperType);
+        model.addAttribute("paperNameInfo", paperNameInfo);
+        int id = getRepeatPaper(paperNameInfo);
+        if (id!=-1) {
+            abPackage = generatePaper(Integer.toString(id));
+            //System.out.println("repaetABPackage:" +abPackage);
+        }
+    }
+
+    /**
+     * @author  changduo
+     * addQuestionToPaper完成选题功能
+     */
+    @RequestMapping("/addQuestionToPaper")
+    @ResponseBody
+    public Result addQuestionToPaper(@RequestBody QuestionPackage questionPackage, Model model, HttpSession httpSession){
+        //System.out.println("getQuestion: "+questionPackage.toString());
+        System.out.println("addQuestionToPaper insert: "+insert);
+        System.out.println(questionPackage);
+        if(!insert) {
+            model.addAttribute("questionPackage", questionPackage);
+            System.out.println(questionPackage);
+            addRepeatABPackage(questionPackage,model);
+        } else {
+            QuestionPackage sessionQuestion = (QuestionPackage) httpSession.getAttribute("questionPackage");
+//            System.out.println("session: "+sessionQuestion);
+            sessionQuestion.addList(questionPackage);
+            model.addAttribute("questionPackage", sessionQuestion);
+            addRepeatABPackage(sessionQuestion,model);
+        }
+//        System.out.println("sdddd");
+        return Result.success();
+
+    }
+
+    /**
+     * @author  changduo
+     *removeQestionPreview删除预览页面的选题
+     */
+    @RequestMapping("/removeQestionPreview")
+    @ResponseBody
+    public Result removeQestionPreview(@RequestBody String data,Model model, HttpSession httpSession) {
+        System.out.println("removeQestionPreview");
+        JSONObject jData = JSON.parseObject(data);
+        String id = jData.getString("id");
+        String type = jData.getString("type");
+        System.out.println("id:"+id+" type: "+type);
+        QuestionPackage sQuestion = (QuestionPackage) httpSession.getAttribute("questionPackage");
+        System.out.println("removeQestionPreview session:"+ sQuestion);
+        switch (type) {
+            case "Selection"://选择题
+                System.out.println("SELECTION");
+                removeQuestion(sQuestion.getSelectionList(),id);
+                break;
+            case "TorF": //判断题
+                removeQuestion(sQuestion.getTorFList(),id);
+                break;
+            case "WordEnToCN": //常用词组英译汉
+                removeQuestion(sQuestion.getWordEnToCNList(),id);
+                break;
+            case "WordCnToEN": //常用词组汉译英
+                removeQuestion(sQuestion.getWordCnToENList(),id);
+                break;
+            case "Explanation": //缩略词解释
+                removeQuestion(sQuestion.getExplanationList(),id);
+                break;
+            case "SentenceEnToCN": //句子英译汉
+                removeQuestion(sQuestion.getSentenceEnToCNList(),id);
+                break;
+            case "SentenceCnToEN": //句子汉译英
+                removeQuestion(sQuestion.getSentenceCnToENList(),id);
+                break;
+            default:
+                break;
+        }
+        model.addAttribute("questionPackage", sQuestion);
+        addRepeatABPackage(sQuestion,model);
+        return Result.success();
+    }
+
+    /**
+     * @author  changduo
+     *store生成试卷
+     */
+    @RequestMapping("/store")
+    @ResponseBody
+    public Result store( Model model, HttpSession httpSession) {
+        System.out.println("store");
+        getPaperList(model);
+        QuestionPackage sQuestion = (QuestionPackage) httpSession.getAttribute("questionPackage");
+        PaperNameInfo paperNameInfo = (PaperNameInfo) httpSession.getAttribute("paperNameInfo");
+        //System.out.println("PaperNameInfo:"+paperNameInfo);
+        //System.out.println("用户选择试题内容有："+sQuestion.toString());
+        ArrayList<String> paperIdList= new ArrayList<>();
+
+        if(sQuestion.getSelectionList()!=null) {//插入选择题到数据库
+            paperIdList.add(generateQIdList(QType.Selection, sQuestion.getSelectionList()));
+        }
+
+        if(sQuestion.getTorFList()!=null) {//插入判断题到数据库
+            paperIdList.add(generateQIdList(QType.TorF, sQuestion.getTorFList()));
+        }
+
+        if(sQuestion.getWordEnToCNList()!=null) {//插入常用词组英译汉到数据库
+            paperIdList.add(generateQIdList(QType.WordEnToCN, sQuestion.getWordEnToCNList()));
+        }
+
+        if(sQuestion.getWordCnToENList()!=null) {//插入常用词组汉译英到数据库
+            paperIdList.add(generateQIdList(QType.WordCnToEN, sQuestion.getWordCnToENList()));
+        }
+
+        if(sQuestion.getExplanationList()!=null) {//插入缩略词解释到数据库
+            paperIdList.add(generateQIdList(QType.Explanation, sQuestion.getExplanationList()));
+        }
+
+        if(sQuestion.getSentenceEnToCNList()!=null) {//插入句子英译汉到数据库
+            paperIdList.add(generateQIdList(QType.SentenceEnToCN, sQuestion.getSentenceEnToCNList()));
+        }
+
+        if(sQuestion.getSentenceCnToENList()!=null) {//插入句子汉译英到数据库
+            paperIdList.add(generateQIdList(QType.SentenceCnToEN, sQuestion.getSentenceCnToENList()));
+        }
+
+        if(paperIdList!=null && paperIdList.size()>0) {
+            QuestionPaper questionPaper = new QuestionPaper();
+            Date currentTime=new Date();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            questionPaper.setGenerateTime(df.format(currentTime));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            if(paperNameInfo != null) {
+                questionPaper.setName(paperNameInfo.getName());
+                questionPaper.setType(paperNameInfo.getType());
+            } else {
+                questionPaper.setName("练习题"+sdf.format(currentTime));
+                questionPaper.setType(3);
+            }
+
+            questionPaper.setAuthorId(1);
+            JSONObject  questionList = new JSONObject();
+            questionList.put("试卷题目表", paperIdList);
+            questionPaper.setQuestionList(questionList.toString());
+            //System.out.println("试卷试题列表："+questionList.toString());
+            questionManageService.addPaper(questionPaper);
+            model.addAttribute("newPaper", questionPaper);
+        }
+
+        return Result.success();
+    }
+
+    /**
+     * @author  changduo
+     *  removeQuestion对应上面removeQestionPreview方法删除预览试卷的题目
+     */
+    private void removeQuestion(List<? extends Question> questionList, String id) {
+        int rdex = 0;
+        int i = 0;
+        for(i = 0 ; i < questionList.size();i++) {
+            if(questionList.get(i).getId() == Integer.parseInt(id)) {
+                rdex = i;
+                break;
+            }
+        }
+        if(i<questionList.size()) {
+            questionList.remove(rdex);
+        }
+    }
+    /**
+     * @author  changduo
+     *  generateQIdList生成试卷的题目编号和重复试卷编号插入到eurasia_ictenglish_paper_question_lists表中
+     */
+    private String generateQIdList(QType type, List<? extends Question> questionList ) {
+        ArrayList<JSONObject>  idListItem = new ArrayList<JSONObject> ();
+        for (int i = 0; i<questionList.size(); i++) {
+            JSONObject  idItem = new JSONObject();
+            idItem.put("题目编号", questionList.get(i).getId());
+            idItem.put("重复试卷编号","0");
+            idListItem.add(idItem);
+        }
+        JSONObject idList = new JSONObject();
+        idList.put("题目编号列表", idListItem);
+
+        QuestionPaperItem questionPaperItem = new QuestionPaperItem();
+        questionPaperItem.setqType(QTypeUtil.getTypeId(type));
+        questionPaperItem.setScore("2");
+        questionPaperItem.setqIdList(idList.toString());
+
+        questionManageService.addQuestionToPaper(questionPaperItem);
+        return String.valueOf(questionPaperItem.getId());
+    }
+
 
 
     /**

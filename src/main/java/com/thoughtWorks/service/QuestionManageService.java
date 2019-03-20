@@ -80,4 +80,29 @@ public interface QuestionManageService {
 
     //把句子汉译英加入到数据库
     void addSentenceCnToENToDB(SentenceCnToEN sentenceCnToEN);
+
+
+    /**
+     * ChangDuo
+     * @param questionItem
+     */
+    void addQuestionToPaper(QuestionPaperItem questionItem);
+
+    void addPaper(QuestionPaper questionPaper);
+
+    List<Selection> selectSelectionByChapter(String condition);
+
+    List<TorF> selectTorFByChapter(String condition);
+
+    List<WordEnToCN> selectWordEnToCNByChapter(String condition);
+
+    List<WordCnToEN> selectWordCnToENByChapter(String condition);
+
+    List<Explanation> selectExplanationByChapter(String condition);
+
+    List<SentenceEnToCN> selectSentenceEnToCNByChapter(String condition);
+
+    List<SentenceCnToEN> selectSentenceCnToENByChapter(String condition);
+
+
 }
