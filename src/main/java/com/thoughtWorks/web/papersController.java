@@ -54,7 +54,7 @@ public class papersController {
     Boolean insert = false;
 
     private QuestionPackage abPackage = null;
-    private static String DIR="E:\\SMXY\\download\\";
+    private static String DIR="C:\\SMXY\\download\\";
     private static String PWDDB = "root";
 
 
@@ -390,37 +390,15 @@ public class papersController {
                     }
                     if(isAll) {
                         selection = questionManageService.selectSelection();
-                    } else {
-                        for(int j = 0; j < type_list.size(); j++) {
-                            String condition = "%"+type_list.get(j)+"%";
-                            List<Selection> newList = questionManageService.selectSelectionByChapter(condition);
-                            for(Selection question:newList) {
-                                if(!selection.contains(question)) {
-                                    selection.add(question);
-                                }
-                            }
-                        }
                     }
                     break;
                 case "TorF": //命名题
                     if(torf == null) {
                         torf = new ArrayList<TorF>();
                     }
-
                     if(isAll) {
                         torf = questionManageService.selectTorF();
-                    } else {
-                        for(int j = 0; j < type_list.size(); j++) {
-                            String condition = "%"+type_list.get(j)+"%";
-                            List<TorF> newList = questionManageService.selectTorFByChapter(condition);
-                            for(TorF question:newList) {
-                                if(!torf.contains(question)) {
-                                    torf.add(question);
-                                }
-                            }
-                        }
                     }
-
                     break;
                 case "WordEnToCN": //完成反应式题
                     if(wordentocn == null) {
@@ -428,16 +406,6 @@ public class papersController {
                     }
                     if(isAll) {
                         wordentocn = questionManageService.selectWordEnToCN();
-                    } else {
-                        for(int j = 0; j < type_list.size(); j++) {
-                            String condition = "%"+type_list.get(j)+"%";
-                            List<WordEnToCN> newList = questionManageService.selectWordEnToCNByChapter(condition);
-                            for(WordEnToCN question:newList) {
-                                if(!wordentocn.contains(question)) {
-                                    wordentocn.add(question);
-                                }
-                            }
-                        }
                     }
                     break;
                 case "WordCnToEN": //推断结构题
@@ -446,18 +414,7 @@ public class papersController {
                     }
                     if(isAll) {
                         wordcntoen = questionManageService.selectWordCnToEN();
-                    } else {
-                        for(int j = 0; j < type_list.size(); j++) {
-                            String condition = "%"+type_list.get(j)+"%";
-                            List<WordCnToEN> newList = questionManageService.selectWordCnToENByChapter(condition);
-                            for(WordCnToEN question:newList) {
-                                if(!wordcntoen.contains(question)) {
-                                    wordcntoen.add(question);
-                                }
-                            }
-                        }
                     }
-
                     break;
                 case "Explanation": //比较分析题
                     if(explanation == null) {
@@ -465,16 +422,6 @@ public class papersController {
                     }
                     if(isAll) {
                         explanation = questionManageService.selectExplanation();
-                    } else {
-                        for(int j = 0; j < type_list.size(); j++) {
-                            String condition = "%"+type_list.get(j)+"%";
-                            List<Explanation> newList = questionManageService.selectExplanationByChapter(condition);
-                            for(Explanation question:newList) {
-                                if(!explanation.contains(question)) {
-                                    explanation.add(question);
-                                }
-                            }
-                        }
                     }
                     break;
                 case "SentenceEnToCN": //鉴别题
@@ -483,16 +430,6 @@ public class papersController {
                     }
                     if(isAll) {
                         sentenceentocn = questionManageService.selectSentenceEnToCN();
-                    } else {
-                        for(int j = 0; j < type_list.size(); j++) {
-                            String condition = "%"+type_list.get(j)+"%";
-                            List<SentenceEnToCN> newList = questionManageService.selectSentenceEnToCNByChapter(condition);
-                            for(SentenceEnToCN question:newList) {
-                                if(!sentenceentocn.contains(question)) {
-                                    sentenceentocn.add(question);
-                                }
-                            }
-                        }
                     }
                     break;
                 case "SentenceCnToEN": //合成题
@@ -501,16 +438,6 @@ public class papersController {
                     }
                     if(isAll) {
                         sentencecntoen = questionManageService.selectSentenceCnToEN();
-                    } else {
-                        for(int j = 0; j < type_list.size(); j++) {
-                            String condition = "%"+type_list.get(j)+"%";
-                            List<SentenceCnToEN> newList = questionManageService.selectSentenceCnToENByChapter(condition);
-                            for(SentenceCnToEN question:newList) {
-                                if(!sentencecntoen.contains(question)) {
-                                    sentencecntoen.add(question);
-                                }
-                            }
-                        }
                     }
                     break;
                 default:

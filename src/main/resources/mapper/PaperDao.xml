@@ -38,8 +38,8 @@
     </select>
 
     <select id="selectTorFById" parameterType="int" resultType="com.thoughtWorks.entity.question.TorF">
-        SELECT id, question,answer_a as "answerA",answer_b as "answerB",answer
-		FROM eurasia_ictenglish_questions_torf where eurasia_ictenglish_questions_torf.id = #{id};
+        SELECT id, question,answer
+        FROM eurasia_ictenglish_questions_torf where eurasia_ictenglish_questions_torf.id = #{id};
     </select>
 
     <select id="selectWordEnToCNById" parameterType="int" resultType="com.thoughtWorks.entity.question.WordEnToCN">

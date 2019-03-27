@@ -14,9 +14,8 @@
           href="${baseurl}/public/common/layui/css/layui.css" media="all">
     <link rel="stylesheet" type="text/css"
           href="${baseurl}/public/css/select.css" media="all">
-    <script type="text/javascript" src="http://212.64.25.41:8080/ICTEnglish//public/common/layui/layui.js"></script>
+    <script type="text/javascript" src="/public/common/layui/layui.js"></script>
     <script>
-        var baseUrl = "http://212.64.25.41:8080/ICTEnglish/";
         var ADDRESS_SPLIT_FLAG = "-";
         var HEAD_IMAGE_PREFIX = baseUrl+"images/subject"
         var HEAD_IMAGE_PREFIX1 = baseUrl+"images/public/cover.png"
@@ -144,7 +143,7 @@
             select = {
                 getSelectType: function() {
                     var items_type = document.getElementsByName("type")
-                    //console.log(items_type);
+                    console.log("items_type"+items_type);
                     var type = new Array();
                     var j = 0;
                     for (var i = 0; i < items_type.length; i++) {
@@ -153,27 +152,7 @@
                             j++;
                         }
                     }
-                    console.log(type);
-
-                    var type = new Array();
-                    var allSelect = document.getElementsByName("allTypeChoose");
-                    console.log(allSelect);
-                    var isAll = false;
-                    if(allSelect[0].checked) {
-                        isAll = true;
-                    } else {
-                        isAll = false;
-                        var items_type = document.getElementsByName("type");
-                        var j = 0;
-                        console.log(items_type) ;
-                        for (var i = 0; i < items_type.length; i++) {
-                            if (items_type[i].checked) {
-                                type[j] = items_type[i].value;
-                                j++;
-                            }
-                        }
-                    }
-                    console.log(type);
+                    console.log("type1"+type);
 
                    // 如果选择了type类型而没有选择章节，而无法查出来，如果选择了type，也选择了章节，则可以显示出来。
                     isAll = true;
@@ -188,10 +167,9 @@
                     $.ajax({
                         type : "post",
                         url : "/ictEnglish/paper/getByTypeAndChapter",
-                        //url : "http://212.64.25.41:8080/ICTEnglish//exam/getByType",
                         data : params,
                         success : function(data) {
-                            //console.log("data=" + JSON.stringify(data));
+                            console.log("data=" + JSON.stringify(data));
                             selectionList = data.selectionList;
                             torFList = data.torFList;
                             wordEnToCNList = data.wordEnToCNList;
